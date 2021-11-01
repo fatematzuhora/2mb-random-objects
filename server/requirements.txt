@@ -10,6 +10,7 @@ MarkupSafe==2.0.1
 mccabe==0.6.1
 platformdirs==2.4.0
 pylint==2.11.1
+python-dotenv==0.19.1
 six==1.16.0
 toml==0.10.2
 typing-extensions==3.10.0.2

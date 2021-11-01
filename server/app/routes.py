@@ -97,7 +97,7 @@ def random_objects():
         'message': 'random objects',
         'status': 201,
         'data': {
-            'url': os.path.abspath('' + 'file/file.txt'),
+            'random_object_list': random_object_list,
             'report': {
                 'alphabetical_str' : alphabetical_str,
                 'real_number' : real_num,
