@@ -3,6 +3,7 @@ import os
 from random import choice, randint, uniform
 from string import ascii_lowercase, digits
 from flask import jsonify, make_response
+from flask_cors import cross_origin
 from app import app
 
 
@@ -51,6 +52,7 @@ def generate_object(option):
 # endpoints for random_objects app
 # ================================
 @app.route("/random", methods=["POST"])
+@cross_origin()
 def random_objects():
     '''endpoint to generate random objects of 2MB in size
     returns jsonify object
