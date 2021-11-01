@@ -11,8 +11,10 @@ const Form = () => {
 	const [btnLoading, setBtnLoading] = useState<boolean>(false);
 
 	useEffect(() => {
-		//
-	}, [report, url]);
+		if (report !== undefined) {
+			onGenerateReport();
+		}
+	}, [result, report, url]);
 
 	const onGenerateFile = async () => {
 		setBtnLoading(true);
