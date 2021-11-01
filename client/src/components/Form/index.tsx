@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BASE_URL } from 'config';
 import formStyle from './form.module.scss';
 
-const Form = () => {
+const Form: React.FC = (props) => {
 	const [report, setReport] = useState<any | undefined>(undefined);
 	const [url, setUrl] = useState<boolean>(false);
 	const [result, setResult] = useState<any>({});
