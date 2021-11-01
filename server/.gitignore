@@ -1,5 +1,6 @@
 # Code Editor
 .vscode
+!.vscode/settings.json
 
 ### Database ###
 *.accdb
