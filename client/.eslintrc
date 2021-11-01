@@ -1,0 +1,37 @@
+{
+	"plugins": ["@typescript-eslint/eslint-plugin"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"@typescript-eslint/no-unused-vars": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"import/prefer-default-export": "off",
+		"no-console": "error",
+		"no-multi-str": "off",
+		"no-nested-ternary": "off",
+		"prefer-const": "off",
+		"no-unused-vars": "off",
+		"react/no-did-update-set-state": "off",
+		"import/no-named-as-default": "off",
+		"prefer-destructuring": ["warn", { "object": true, "array": true }],
+		"no-underscore-dangle": ["error", { "allowAfterThis": true }],
+		"max-len": [
+			"warn",
+			{
+				"code": 120,
+				"tabWidth": 4,
+				"comments": 300,
+				"ignoreComments": false,
+				"ignoreTrailingComments": true,
+				"ignoreUrls": true,
+				"ignoreStrings": true,
+				"ignoreTemplateLiterals": true,
+				"ignoreRegExpLiterals": true
+			}
+		]
+	}
+}
