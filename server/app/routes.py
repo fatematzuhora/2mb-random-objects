@@ -1,5 +1,6 @@
 '''app routes'''
 import os
+import traceback
 from random import choice, randint, uniform
 from string import ascii_lowercase, digits
 from flask import jsonify, make_response
@@ -57,53 +58,58 @@ def random_objects():
     '''endpoint to generate random objects of 2MB in size
     returns jsonify object
     '''
-    choice_list = ['alphabetical_string', 'real_number', 'integer', 'alphanumeric']
-    random_object_list = []
+    try:
+        choice_list = ['alphabetical_string', 'real_number', 'integer', 'alphanumeric']
+        random_object_list = []
 
-    total_char = 0
-    alphabetical_str = 0
-    real_num = 0
-    integer_num = 0
-    alphanumeric_str = 0
+        total_char = 0
+        alphabetical_str = 0
+        real_num = 0
+        integer_num = 0
+        alphanumeric_str = 0
 
-    while total_char < 2097152:
-        option = choice(choice_list)
-        object_value = generate_object(option)
+        while total_char < 2097152:
+            option = choice(choice_list)
+            object_value = generate_object(option)
 
-        if (len(object_value) + total_char) > 2097152:
-            diff = 2097152 - total_char
-            object_value = alphabetical_string(diff - 2)
+            if (len(object_value) + total_char) > 2097152:
+                diff = 2097152 - total_char
+                object_value = alphabetical_string(diff - 2)
 
-        random_object_list.append(object_value)
-        total_char += len(object_value) + 2
+            random_object_list.append(object_value)
+            total_char += len(object_value) + 2
 
-        if total_char < 2097152:
-            if option == 'alphabetical_string':
+            if total_char < 2097152:
+                if option == 'alphabetical_string':
+                    alphabetical_str += 1
+                elif option == 'real_number':
+                    real_num += 1
+                elif option == 'integer':
+                    integer_num += 1
+                elif option == 'alphanumeric':
+                    alphanumeric_str += 1
+            else:
                 alphabetical_str += 1
-            elif option == 'real_number':
-                real_num += 1
-            elif option == 'integer':
-                integer_num += 1
-            elif option == 'alphanumeric':
-                alphanumeric_str += 1
-        else:
-            alphabetical_str += 1
 
-    with open(os.path.join('file', 'file.txt'), "w", encoding='utf8') as file:
-        for item in random_object_list:
-            file.write(str(item) + ', ')
+        with open(os.path.join('file', 'file.txt'), "w", encoding='utf8') as file:
+            for item in random_object_list:
+                file.write(str(item) + ', ')
 
-    data = {
-        'message': 'random objects',
-        'status': 201,
-        'data': {
-            'random_object_list': random_object_list,
-            'report': {
-                'alphabetical_str' : alphabetical_str,
-                'real_number' : real_num,
-                'integer' : integer_num,
-                'alphanumeric' : alphanumeric_str
+        data = {
+            'message': 'random objects',
+            'status': 201,
+            'data': {
+                'random_object_list': random_object_list,
+                'report': {
+                    'alphabetical_str' : alphabetical_str,
+                    'real_number' : real_num,
+                    'integer' : integer_num,
+                    'alphanumeric' : alphanumeric_str
+                }
             }
         }
-    }
-    return make_response(jsonify(data))
+        return make_response(jsonify(data))
+
+    except:
+        traceback.print_exc()
+        return {'message': 'Internal server error. Failed to create random objects.'}, 500
