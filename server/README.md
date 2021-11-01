@@ -46,7 +46,7 @@ And finally, the application will run on the following URL: http://127.0.0.1:500
 POST /random
 ```
 
-**Response**
+**Sample Response**
 
 ```
 {
@@ -57,7 +57,9 @@ POST /random
       "integer": 16078,
       "real_number": 15813
     },
-    "url": "/Users/fatematzuhora/CraftsCoder/2mb-random-objects/server/file/file.txt"
+    "random_object_list": [
+      69983, 258332.65786387565, "9mssuniczquwfhtqirrr5b079a9xo4vcj0752smwosjtsnduznsbs0crvz3seq", ...
+    ]
   },
   "message": "random objects",
   "status": 201
